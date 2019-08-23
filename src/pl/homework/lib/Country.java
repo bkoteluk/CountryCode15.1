@@ -37,10 +37,6 @@ public class Country {
 
     @Override
     public String toString() {
-        return "Country{" +
-                "code='" + code + '\'' +
-                ", name='" + name + '\'' +
-                ", citizens=" + citizens +
-                '}';
+        return " Kraj : " + name + " (" + code + ") " + ", liczba ludności " + citizens + "\n";
     }
 }

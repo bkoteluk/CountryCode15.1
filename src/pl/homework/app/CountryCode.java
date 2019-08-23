@@ -14,15 +14,15 @@ public class CountryCode {
     public static void main(String[] args) {
         try {
             readCountryCodes();
-            printCountryInfo(inputCode());
-            System.out.println(countryMap);
+            printCountryInfo();
+//            System.out.println("\n" + countryMap);
         } catch (IOException | IllegalCountryCodeException ex) {
             System.out.println(ex.getMessage());
         }
 
     }
 
-    public static void readCountryCodes() throws IOException {
+    private static void readCountryCodes() throws IOException {
         File file = new File("countrycode.csv");
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         String line = "";
@@ -33,19 +33,19 @@ public class CountryCode {
         }
     }
 
-    public static String inputCode() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Podaj kod kraju, o którym chcesz zobaczyć informacje: ");
-        return sc.nextLine();
-    }
-
-    public static void printCountryInfo(String countryCode) throws IllegalCountryCodeException {
+    private static void printCountryInfo() throws IllegalCountryCodeException {
+        String countryCode = inputCode();
         if (countryMap.containsKey(countryCode)) {
             Country country = countryMap.get(countryCode);
             System.out.println(country.getName() + " (" + countryCode + ") " + " ma " + country.getCitizens() + " ludności");
         } else {
             throw new IllegalCountryCodeException("Błędny kod lub brak kraju w zbiorze");
         }
+    }
 
+    private static String inputCode() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Podaj kod kraju, o którym chcesz zobaczyć informacje: ");
+        return sc.nextLine();
     }
 }
